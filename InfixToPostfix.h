@@ -9,12 +9,14 @@
 using namespace std;
 
 class InfixToPostfix {
+public:
     void convertToPostFix();
     bool precedence(char opr1, char opr2);
     void getInfix(string);
     void showInfix();
     void showPostfix();
-    InfixToPostfix(string = ""); //Default constructor
+    //Default constructor
+    InfixToPostfix(string = "");
 
 private:
     string ifx; // infix notation
