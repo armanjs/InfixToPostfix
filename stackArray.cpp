@@ -17,7 +17,7 @@ stackArray::~stackArray() {
 
 void stackArray::push(char item) {
     // check if stack is full or not
-    if (stackTop != maxStackSize){
+    if (!isFullStack()){
         list[stackTop] = item;
         stackTop++; // increment the number of elements
     }
@@ -38,6 +38,10 @@ void stackArray::pop() {
 
 char stackArray::top() {
     return list[stackTop - 1];
+}
+
+bool stackArray::isFullStack() {
+    return (stackTop == maxStackSize);
 }
 
 

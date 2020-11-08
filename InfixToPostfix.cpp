@@ -10,7 +10,7 @@ using namespace std;
 
 void InfixToPostfix::convertToPostFix() {
     stackArray stack(50); // create a stack of 50 elements
-    char stackOpr;
+    char stackOpr; // operator in the stack
     pfx = ""; // initialize postfix
     int length = ifx.length();
     // go through the infix statement
@@ -21,13 +21,15 @@ void InfixToPostfix::convertToPostFix() {
         }
         else {
             switch (ifx[i]) {
-                case '(':
+                case '(': // always push for '('
                     stack.push(ifx[i]);
                     break;
-                case ')':
-                    stack.top();
+                case ')': // always pop for ')'
+                    stackOpr = stack.top(); // return the top of the stack
                     stack.pop();
                     while (stackOpr != '('){
+                        pfx = pfx + stackOpr;
+                        if (!stack.isFullStack())
 
                     }
 
