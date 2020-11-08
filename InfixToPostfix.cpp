@@ -7,7 +7,6 @@
 #include "stackArray.h"
 using namespace std;
 
-
 void InfixToPostfix::convertToPostFix() {
     stackArray stack(50); // create a stack of 50 elements
     char stackOpr; // operator in the stack
@@ -44,7 +43,28 @@ void InfixToPostfix::convertToPostFix() {
                     if (stack.isEmptyStack()){
                         stack.push(ifx[i]);
                     }
+                    else {
+                        stackOpr = stack.top();
+                        stack.pop();
+                        while (precedence(stackOpr, ifx[i])){
+                            pfx = pfx + stackOpr;
+                            if (!stack.isEmptyStack()){
+                                stackOpr = stack.top();
+                                stack.pop();
+                            } else {
+                                break;
+                            }
+                        }
+                        if (!precedence(stackOpr, ifx[i])){
+                            stack.push(stackOpr);
+                        }
+                        stack.push(ifx[i]);
+                    }
             }
+        }
+        while (!stack.isEmptyStack()){
+            pfx += stack.top();
+            stack.pop();
         }
     }
 }
