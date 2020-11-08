@@ -29,11 +29,21 @@ void InfixToPostfix::convertToPostFix() {
                     stack.pop();
                     while (stackOpr != '('){
                         pfx = pfx + stackOpr;
-                        if (!stack.isFullStack())
-
+                        if (!stack.isFullStack()) {
+                            stackOpr = stack.top();
+                            stack.pop();
+                        } else {
+                            break;
+                        }
                     }
-
-
+                    break;
+                case ';':
+                case ' ':
+                    break;
+                default:
+                    if (stack.isEmptyStack()){
+                        stack.push(ifx[i]);
+                    }
             }
         }
     }

@@ -15,6 +15,7 @@ public:
     void pop();
     char top();
     bool isFullStack();
+    bool isEmptyStack();
 
 private:
     int maxStackSize; // maxStackSize of the list

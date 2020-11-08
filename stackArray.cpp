@@ -44,4 +44,8 @@ bool stackArray::isFullStack() {
     return (stackTop == maxStackSize);
 }
 
+bool stackArray::isEmptyStack() {
+    return (stackTop == 0);
+}
+
 
