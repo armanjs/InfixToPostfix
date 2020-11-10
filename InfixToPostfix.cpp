@@ -5,6 +5,7 @@
 #include "InfixToPostfix.h"
 #include "iostream"
 #include "stackArray.h"
+
 using namespace std;
 
 void InfixToPostfix::convertToPostFix() {
@@ -17,8 +18,7 @@ void InfixToPostfix::convertToPostFix() {
         if (ifx[i] >= 'A' && ifx[i] <= 'Z') {
             // if its a capital letter
             pfx = pfx + ifx[i]; // add to result (postfix)
-        }
-        else {
+        } else {
             switch (ifx[i]) {
                 case '(': // always push for '('
                     stack.push(ifx[i]);
@@ -26,7 +26,7 @@ void InfixToPostfix::convertToPostFix() {
                 case ')': // always pop for ')'
                     stackOpr = stack.top(); // return the top of the stack
                     stack.pop();
-                    while (stackOpr != '('){
+                    while (stackOpr != '(') {
                         pfx = pfx + stackOpr;
                         if (!stack.isFullStack()) {
                             stackOpr = stack.top();
@@ -40,52 +40,48 @@ void InfixToPostfix::convertToPostFix() {
                 case ' ':
                     break;
                 default:
-                    if (stack.isEmptyStack()){
+                    if (stack.isEmptyStack()) {
                         stack.push(ifx[i]);
-                    }
-                    else {
+                    } else {
                         stackOpr = stack.top();
                         stack.pop();
-                        while (precedence(stackOpr, ifx[i])){
+                        while (precedence(stackOpr, ifx[i])) {
                             pfx = pfx + stackOpr;
-                            if (!stack.isEmptyStack()){
+                            if (!stack.isEmptyStack()) {
                                 stackOpr = stack.top();
                                 stack.pop();
                             } else {
                                 break;
                             }
                         }
-                        if (!precedence(stackOpr, ifx[i])){
+                        if (!precedence(stackOpr, ifx[i])) {
                             stack.push(stackOpr);
                         }
                         stack.push(ifx[i]);
                     }
             }
         }
-        while (!stack.isEmptyStack()){
-            pfx += stack.top();
-            stack.pop();
-        }
+    }
+    while (!stack.isEmptyStack()) {
+        pfx += stack.top();
+        stack.pop();
     }
 }
 
 bool InfixToPostfix::precedence(char opr1, char opr2) {
-    int precedence1 = 0, precedence2 = 0;
+    int precedence1, precedence2;
 
-    if (opr1 == '*' || opr1 == '/'){
+    if (opr1 == '*' || opr1 == '/') {
         precedence1 = 2;
-    }
-    else if (opr1 == '+' || opr1 == '-'){
+    } else if (opr1 == '+' || opr1 == '-') {
         precedence1 = 1;
-    }
-    else if (opr1 == '('){
+    } else if (opr1 == '(') {
         precedence1 = 0;
     }
 
-    if (opr2 == '*' || opr2 == '/'){
+    if (opr2 == '*' || opr2 == '/') {
         precedence2 = 2;
-    }
-    else if (opr2 == '+' || opr2 == '-'){
+    } else if (opr2 == '+' || opr2 == '-') {
         precedence2 = 1;
     }
     return (precedence1 >= precedence2);
@@ -93,7 +89,7 @@ bool InfixToPostfix::precedence(char opr1, char opr2) {
 
 void InfixToPostfix::getInfix(string data) {
     ifx = data;
-    convertToPostFix();
+    // convertToPostFix();
 }
 
 void InfixToPostfix::showInfix() {
