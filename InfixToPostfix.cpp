@@ -62,10 +62,10 @@ void InfixToPostfix::convertToPostFix() {
                     }
             }
         }
-        while (!stack.isEmptyStack()){
-            pfx += stack.top();
-            stack.pop();
-        }
+    }
+    while (!stack.isEmptyStack()) {
+        pfx += stack.top();
+        stack.pop();
     }
 }
 
