@@ -37,6 +37,10 @@ int mathExp::calculate(char operand, int left, int right) {
     return -1;
 }
 
+mathExp::mathExp(string expression) {
+    list = expression;
+}
+
 
 
 

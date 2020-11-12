@@ -4,6 +4,8 @@
 #include "mathExp.h"
 #include <stack>
 
+stack<int> getStack(const string &str, mathExp &exp1);
+
 int calculate(char operand, int left, int right) {
     if (operand == '+'){
         return left + right;
@@ -38,16 +40,6 @@ int precedence(char ch) {
 
 int main() {
     /*
-    std::cout << "Hello, World!" << std::endl;
-    stackArray stack(3);
-    stack.push('3');
-    stack.push('*');
-    stack.push('5');
-    stack.push('0');
-    //cout << stack.top() << endl;
-    stack.pop();
-    cout << stack.top() << endl;
-
     cout << "enter a infix statement to be converted to postfix without spaces: ";
     string infix = "";
     cin >> infix;
@@ -59,9 +51,15 @@ int main() {
     */
 
 
-    char str[] = "(3+4)*5/7";
-    //mathExp exp1 (str);
-    int length = sizeof(str)/sizeof(char);
+    string str = "(3+4)*5/7";
+    mathExp exp1 (str);
+    stack<int> operands = getStack(str, exp1);
+
+    cout << "Result: " << operands.top() << endl;
+    return 0;
+}
+
+stack<int> getStack(const string &str, mathExp &exp1) {
     stack<char> operators;
     stack<int> operands;
     cout <<"InFix Expression: " << str << endl;
@@ -81,8 +79,8 @@ int main() {
             }
             operators.pop();
         } else if(str[i] == '+' || str[i] == '-' || str[i] == '*' || str[i] == '/'){
-            int pC = precedence(str[i]);
-            while(!operators.empty() && precedence(operators.top()) >= pC){
+            int pC = exp1.precedence(str[i]);
+            while(!operators.empty() && exp1.precedence(operators.top()) >= pC){
                 int right = operands.top();
                 operands.pop();
                 int left = operands.top();
@@ -106,7 +104,5 @@ int main() {
         operands.push(result);
         operators.pop();
     }
-
-    cout << "Result: " << operands.top() << endl;
-    return 0;
+    return operands;
 }
