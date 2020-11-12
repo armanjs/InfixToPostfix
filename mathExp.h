@@ -19,7 +19,7 @@ public:
 
     int calculate(char, int, int);
 
-    stack<int> getStack(const string &str, mathExp &exp1);
+    stack<int> getStack(mathExp &exp1);
 
 
 private:

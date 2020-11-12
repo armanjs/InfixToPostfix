@@ -40,15 +40,15 @@ mathExp::mathExp(string expression) {
 }
 
 
-stack<int> mathExp::getStack(const string &str, mathExp &exp1) {
+stack<int> mathExp::getStack(mathExp &exp1) {
     stack<char> operators;
     stack<int> operands;
-    cout << "InFix Expression: " << str << endl;
+    cout << "InFix Expression: " << exp1.list << endl;
     int i = 0;
-    while (str[i] != '\0') {
-        if (str[i] == '(') {
+    while (exp1.list[i] != '\0') {
+        if (exp1.list[i] == '(') {
             operators.push('(');
-        } else if (str[i] == ')') {
+        } else if (exp1.list[i] == ')') {
             while (operators.top() != '(') {
                 int right = operands.top();
                 operands.pop();
@@ -59,8 +59,8 @@ stack<int> mathExp::getStack(const string &str, mathExp &exp1) {
                 operators.pop();
             }
             operators.pop();
-        } else if (str[i] == '+' || str[i] == '-' || str[i] == '*' || str[i] == '/') {
-            int pC = exp1.precedence(str[i]);
+        } else if (exp1.list[i] == '+' || exp1.list[i] == '-' || exp1.list[i] == '*' || exp1.list[i] == '/') {
+            int pC = exp1.precedence(exp1.list[i]);
             while (!operators.empty() && exp1.precedence(operators.top()) >= pC) {
                 int right = operands.top();
                 operands.pop();
@@ -70,9 +70,9 @@ stack<int> mathExp::getStack(const string &str, mathExp &exp1) {
                 operands.push(result);
                 operators.pop();
             }
-            operators.push(str[i]);
+            operators.push(exp1.list[i]);
         } else {
-            operands.push(int(str[i]) - 48);
+            operands.push(int(exp1.list[i]) - 48);
         }
         i++;
     }
