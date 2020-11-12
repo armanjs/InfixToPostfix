@@ -4,15 +4,23 @@
 
 #ifndef INFIXTOPOSTFIX_MATHEXP_H
 #define INFIXTOPOSTFIX_MATHEXP_H
+
 #include "string"
+#include <stack>
+
 using namespace std;
 
 
 class mathExp {
 public:
-    mathExp(string);
+    explicit mathExp(string);
+
     int precedence(char);
+
     int calculate(char, int, int);
+
+    stack<int> getStack(const string &str, mathExp &exp1);
+
 
 private:
     string list;
