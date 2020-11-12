@@ -9,11 +9,13 @@ using namespace std;
 
 
 class mathExp {
+public:
+    mathExp(string);
     int precedence(char);
     int calculate(char, int, int);
 
-public:
-    mathExp(char[]);
+private:
+    string list;
 };
 
 #endif //INFIXTOPOSTFIX_MATHEXP_H
