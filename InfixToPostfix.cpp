@@ -9,7 +9,7 @@
 using namespace std;
 
 void InfixToPostfix::convertToPostFix() {
-    stackArray stack(50); // create a stack of 50 elements
+    stackArray stack(60); // create a stack of 50 elements
     char stackOpr; // operator in the stack
     pfx = ""; // initialize postfix
     int length = ifx.length();
