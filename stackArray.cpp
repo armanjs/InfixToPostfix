@@ -3,6 +3,7 @@
 //
 #include "stackArray.h"
 #include "iostream"
+
 using namespace std;
 
 stackArray::stackArray(int max) {
@@ -17,21 +18,19 @@ stackArray::~stackArray() {
 
 void stackArray::push(char item) {
     // check if stack is full or not
-    if (!isFullStack()){
+    if (!isFullStack()) {
         list[stackTop] = item;
         stackTop++; // increment the number of elements
-    }
-    else {
+    } else {
         cout << "cannot add to a full stack." << endl;
     }
 }
 
 void stackArray::pop() {
     //cout << list[stackTop - 1];
-    if (stackTop != 0){
+    if (stackTop != 0) {
         stackTop--;
-    }
-    else {
+    } else {
         cout << "List is empty." << endl;
     }
 }
